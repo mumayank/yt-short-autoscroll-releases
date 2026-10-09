@@ -16,12 +16,21 @@ html, body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background:
     radial-gradient(90% 70% at 8% -10%, rgba(255, 0, 0, 0.55), transparent 55%),
     radial-gradient(70% 60% at 100% 0%, rgba(255, 0, 0, 0.28), transparent 50%),
     radial-gradient(80% 50% at 50% 110%, rgba(255, 0, 0, 0.22), transparent 55%),
     linear-gradient(165deg, #2a0505 0%, #0b0b0b 42%, #1a0000 100%);
   background-attachment: fixed;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 a { color: inherit; }
