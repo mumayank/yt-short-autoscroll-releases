@@ -278,12 +278,22 @@ footer {
   padding: 28px 22px 16px;
   color: var(--mute);
   font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
 }
-footer a { color: var(--red); font-weight: 700; }
+footer p {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  line-height: 1;
+}
+footer a {
+  color: var(--red);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
 
 @media (max-width: 900px) {
   html, body { min-height: auto; }
