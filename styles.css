@@ -1,7 +1,13 @@
-@property --g-angle {
-  syntax: "<angle>";
+@property --gx {
+  syntax: "<percentage>";
   inherits: false;
-  initial-value: 160deg;
+  initial-value: 0%;
+}
+
+@property --gy {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
 }
 
 :root {
@@ -36,18 +42,22 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(
-    var(--g-angle),
-    #070707 0%,
-    #2f2f2f 42%,
-    #121212 68%,
-    #3a3a3a 100%
+  background: radial-gradient(
+    ellipse 90% 70% at var(--gx) var(--gy),
+    #8a8a8a 0%,
+    #3a3a3a 28%,
+    #141414 58%,
+    #070707 100%
   );
-  animation: g-turn 40s linear infinite;
+  animation: g-orbit 60s linear infinite;
 }
 
-@keyframes g-turn {
-  to { --g-angle: 520deg; }
+@keyframes g-orbit {
+  0%   { --gx: 0%;   --gy: 0%; }
+  25%  { --gx: 100%; --gy: 0%; }
+  50%  { --gx: 100%; --gy: 100%; }
+  75%  { --gx: 0%;   --gy: 100%; }
+  100% { --gx: 0%;   --gy: 0%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
