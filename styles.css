@@ -79,7 +79,7 @@ h1 {
 .phone-bezel {
   width: min(220px, 70vw);
   background: var(--bezel);
-  border: 2px solid rgba(255, 0, 0, 0.35);
+  border: 2px solid #2a2a2a;
   border-radius: 24px;
   padding: 6px 6px 4px;
 }
