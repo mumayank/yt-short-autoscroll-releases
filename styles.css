@@ -88,7 +88,7 @@ em { font-style: normal; color: var(--red); }
   border-radius: 50%;
   overflow: hidden;
   display: block;
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  object-fit: cover;
 }
 .brand { font-weight: 700; letter-spacing: -0.04em; font-size: 20px; color: var(--ink); }
 
