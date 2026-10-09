@@ -84,14 +84,6 @@ h1 {
   font-weight: 750;
 }
 
-.lede {
-  margin-top: 10px;
-  max-width: 46ch;
-  color: var(--mute);
-  font-size: 15px;
-  line-height: 1.35;
-}
-
 .hero-actions { margin-top: 16px; }
 
 .phone { justify-self: end; }
