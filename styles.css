@@ -77,15 +77,6 @@ nav, .hero-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   padding: 8px 22px 10px;
 }
 
-.kicker {
-  color: var(--red);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
 h1 {
   font-size: clamp(28px, 4.2vw, 48px);
   letter-spacing: -0.05em;
