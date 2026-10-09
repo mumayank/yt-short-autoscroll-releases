@@ -44,7 +44,7 @@ body {
     #070707 48%
   );
   transform-origin: 50% 50%;
-  animation: g-orbit 10s linear infinite;
+  animation: g-orbit 60s linear infinite;
 }
 
 @keyframes g-orbit {
