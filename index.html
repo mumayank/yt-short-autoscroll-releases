@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YT Short AutoScroll</title>
+  <meta name="description" content="Private Android helper: auto-skip YouTube Shorts when the progress bar ends. Unofficial." />
+  <link rel="icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <svg class="mark" viewBox="0 0 108 108" aria-hidden="true">
+      <rect width="108" height="54" fill="#111" />
+      <rect y="54" width="108" height="54" fill="#fff" />
+      <rect y="53" width="108" height="2" fill="#d0d0d0" />
+      <rect x="41" y="18" width="26" height="32" rx="6" fill="#ff0000" />
+      <polygon points="50,28 50,44 64,36" fill="#fff" />
+      <rect x="28" y="62" width="52" height="30" rx="8" fill="#ff0000" />
+      <polygon points="46,70 46,90 68,80" fill="#fff" />
+    </svg>
+    <span class="brand">YT Short AutoScroll</span>
+    <nav>
+      <a class="ghost" href="https://github.com/sponsors/mumayankteam">Sponsor</a>
+      <a class="solid" href="./YT-Short-AutoScroll.apk">Download APK</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">Unofficial · sideload · Android 11+</p>
+        <h1>When the bar fills,<br />the next Short is already coming.</h1>
+        <p class="lede">Two floating controls on Shorts. Nothing else. No YouTube footage on this page — only our buttons.</p>
+        <div class="hero-actions">
+          <a class="solid large" href="./YT-Short-AutoScroll.apk">Download APK</a>
+          <a class="ghost large" href="https://github.com/sponsors/mumayankteam">Sponsor mumayankteam</a>
+        </div>
+      </div>
+
+      <figure class="phone" aria-label="Outline of a Shorts screen with overlay buttons">
+        <div class="phone-bezel">
+          <div class="status">
+            <span>9:41</span>
+            <span class="dots"></span>
+          </div>
+          <div class="stage">
+            <div class="blank"></div>
+            <button class="fab pause" type="button" aria-label="Auto-scroll on">
+              <span class="bars"></span>
+            </button>
+            <button class="fab skip" type="button" aria-label="Skip">
+              <span class="arrow"></span>
+            </button>
+            <p class="tag tag-pause">auto on</p>
+            <p class="tag tag-skip">skip</p>
+            <div class="progress"><i></i></div>
+          </div>
+          <div class="tabs">
+            <span></span>
+            <span class="on"></span>
+            <span class="plus"></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <section class="pair" aria-label="Button states">
+      <article>
+        <div class="mini-stage">
+          <button class="fab pause" type="button"><span class="bars"></span></button>
+        </div>
+        <h2>Pause</h2>
+        <p>Auto-scroll is running. Next Short when the red bar ends.</p>
+      </article>
+      <article>
+        <div class="mini-stage">
+          <button class="fab pause" type="button"><span class="tri"></span></button>
+        </div>
+        <h2>Play</h2>
+        <p>Auto-scroll paused. Shorts behave as if this app is not there.</p>
+      </article>
+      <article>
+        <div class="mini-stage">
+          <button class="fab skip" type="button"><span class="arrow"></span></button>
+        </div>
+        <h2>Up arrow</h2>
+        <p>Instant skip. Drag either circle anywhere; the spot is remembered.</p>
+      </article>
+    </section>
+
+    <ol class="steps">
+      <li>
+        <strong>01</strong>
+        <span>Install the APK</span>
+      </li>
+      <li>
+        <strong>02</strong>
+        <span>Turn on Accessibility → YT Short AutoScroll</span>
+      </li>
+      <li>
+        <strong>03</strong>
+        <span>Open Shorts. The two circles appear.</span>
+      </li>
+    </ol>
+  </main>
+
+  <footer>
+    <p>Not affiliated with YouTube or Google. Original UI outlines only — no third-party video or logos.</p>
+    <p><a href="https://github.com/sponsors/mumayankteam">Sponsor mumayankteam</a></p>
+  </footer>
+</body>
+</html>
