@@ -49,7 +49,7 @@ body::before {
     #141414 58%,
     #070707 100%
   );
-  animation: g-orbit 60s linear infinite;
+  animation: g-orbit 10s linear infinite;
 }
 
 @keyframes g-orbit {
