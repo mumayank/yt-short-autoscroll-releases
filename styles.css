@@ -1,3 +1,9 @@
+@property --g-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 160deg;
+}
+
 :root {
   --ink: #f7f4ee;
   --mute: #c9c2b6;
@@ -27,21 +33,21 @@ body {
 body::before {
   content: "";
   position: fixed;
-  inset: -35%;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(42% 48% at 22% 28%, #4a4a4a 0%, transparent 58%),
-    radial-gradient(48% 42% at 78% 72%, #2e2e2e 0%, transparent 54%),
-    radial-gradient(36% 36% at 52% 48%, #1c1c1c 0%, transparent 62%),
-    #0a0a0a;
-  animation: mist 38s ease-in-out infinite;
+  background: linear-gradient(
+    var(--g-angle),
+    #070707 0%,
+    #2f2f2f 42%,
+    #121212 68%,
+    #3a3a3a 100%
+  );
+  animation: g-turn 40s linear infinite;
 }
 
-@keyframes mist {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  40% { transform: translate3d(5%, -4%, 0) scale(1.08); }
-  70% { transform: translate3d(-6%, 5%, 0) scale(1.05); }
+@keyframes g-turn {
+  to { --g-angle: 520deg; }
 }
 
 @media (prefers-reduced-motion: reduce) {
