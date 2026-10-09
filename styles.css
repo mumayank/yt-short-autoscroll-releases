@@ -35,7 +35,7 @@ body::before {
     radial-gradient(48% 42% at 78% 72%, #2e2e2e 0%, transparent 54%),
     radial-gradient(36% 36% at 52% 48%, #1c1c1c 0%, transparent 62%),
     #0a0a0a;
-  animation: mist 64s ease-in-out infinite;
+  animation: mist 38s ease-in-out infinite;
 }
 
 @keyframes mist {
@@ -310,22 +310,36 @@ footer {
   padding: 28px 22px 16px;
   color: var(--mute);
   font-size: 12px;
-  line-height: 1.2;
 }
 footer p {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
   margin: 0;
-  line-height: 1.2;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
 }
-footer a,
-footer a:link,
-footer a:visited,
-footer a:hover {
-  color: var(--red);
-  font-weight: 700;
-  font-size: inherit;
-  line-height: inherit;
-  vertical-align: baseline;
+footer p span,
+footer p a,
+footer p a:link,
+footer p a:visited,
+footer p a:hover {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
   text-decoration: none;
+}
+footer p a,
+footer p a:link,
+footer p a:visited,
+footer p a:hover {
+  color: var(--red);
 }
 
 @media (max-width: 900px) {
