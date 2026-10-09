@@ -1,9 +1,9 @@
-# Privacy
+# Hey, about your privacy
 
-YT Short AutoScroll does not collect, store, sell, or send your data anywhere. There is no account, no analytics, no ads, and no tracker. The APK talks to nobody. What happens on your phone stays on your phone.
+I made this app because I'm lazy. 🪥 I watch Shorts while brushing my teeth and I hate scrolling with a wet, foamy hand. If that sounds like you, you'll probably like this. It's free for life. Use it as much as you want.
 
-Accessibility is used only while a Short is actually on screen. When you leave Shorts, the overlay goes away and the service does not keep reading other apps.
+Now the serious bit, said simply: I don't want your data. There is no account, no ads, no analytics, no tracker. The APK does not call home. Nothing leaves your phone.
 
-While a Short is visible, accessibility is there for two jobs: show or hide the on-screen buttons, and (if you left auto-scroll on) notice when the current Short ends so it can swipe to the next one. The one-tap up button is the same idea, only on your tap. It is not used to read your messages, files, passwords, or anything outside that Shorts session.
+I'm also not watching the Short with you. I never see the video. I don't grab the title, the channel, the description, how long it is, or any of that. The only thing the app looks at is how full that little progress bar is, so it can swipe when the clip is done. The buttons show up when a Short is on screen. They vanish when it isn't. It does not poke around your messages, files, passwords, or other apps.
 
-You can pause auto-scroll at any time, turn the accessibility service off in system settings, or uninstall the app. After that, nothing of ours is running.
+Pause auto-scroll, switch the accessibility service off, or uninstall. After that, nothing of mine is running. Promise. 🫶
