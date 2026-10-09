@@ -15,21 +15,25 @@ html, body {
   font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
+html {
+  background: #070707;
+}
+
 body {
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  background: #070707;
+  background: transparent;
 }
 
-body::before {
-  content: "";
+.wash {
   position: fixed;
-  top: 50%;
   left: 50%;
-  width: 140vmax;
-  height: 140vmax;
+  top: 50%;
+  width: 300vw;
+  height: 300vw;
+  margin: -150vw 0 0 -150vw;
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(
@@ -39,12 +43,13 @@ body::before {
     #2a2a2a 34%,
     #070707 48%
   );
-  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: 50% 50%;
   animation: g-orbit 10s linear infinite;
 }
 
 @keyframes g-orbit {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .top, main, footer {
