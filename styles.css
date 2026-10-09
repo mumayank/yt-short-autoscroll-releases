@@ -33,11 +33,11 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(
-    circle at 22% 22%,
-    #9a9a9a 0%,
-    #3a3a3a 22%,
-    #141414 38%,
-    #070707 52%
+    circle at 18% 18%,
+    #e8e8e8 0%,
+    #7a7a7a 18%,
+    #2a2a2a 34%,
+    #070707 48%
   );
   transform: translate(-50%, -50%) rotate(0deg);
   animation: g-orbit 10s linear infinite;
@@ -45,10 +45,6 @@ body::before {
 
 @keyframes g-orbit {
   to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body::before { animation: none; }
 }
 
 .top, main, footer {
