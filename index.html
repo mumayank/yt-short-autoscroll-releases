@@ -1,111 +1,491 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>YT Short AutoScroll</title>
-  <meta name="description" content="Private Android helper: auto-scroll YT Shorts when the current clip ends or loops." />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <link rel="icon" href="icon.png?v=1.15" />
-  <link rel="apple-touch-icon" href="icon.png?v=1.15" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YT Short AutoScroll - Auto-scroll to the next Short when this one ends.</title>
+  <meta name="description" content="A small Android helper that scrolls to the next YouTube Short when the current one ends or loops, with floating pause and one-tap up buttons.">
+  <meta name="theme-color" content="#F3EEE2">
+  <meta property="og:title" content="YT Short AutoScroll - Auto-scroll to the next Short when this one ends.">
+  <meta property="og:description" content="A small Android helper that scrolls to the next YouTube Short when the current one ends or loops, with floating pause and one-tap up buttons.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mumayank.github.io/yt-short-autoscroll-releases/">
+  <meta property="og:image" content="https://mumayank.github.io/yt-short-autoscroll-releases/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mumayank.github.io/yt-short-autoscroll-releases/assets/og.png">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/hero-front.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script>
+    (function () {
+      document.documentElement.classList.add('js');
+      try {
+        var stored = localStorage.getItem('showcase-theme');
+        var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#07131F' : '#F3EEE2');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <div class="wash" aria-hidden="true"></div>
-  <header class="top">
-    <img class="mark" src="icon.png?v=1.15" width="56" height="56" alt="" />
-    <span class="brand">YT Short AutoScroll</span>
+  <a class="skip" href="#main">Skip to the good part</a>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="YT Short AutoScroll home">
+        <span class="brand__mark"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"></use></svg></span>
+        <span class="brand__name">YT Short AutoScroll</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Sections">
+        <a href="#feature-a">The app</a>
+        <a href="#feature-b">The flow</a>
+        <a href="#proof">The switch</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="theme" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="icon theme__sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg>
+          <svg class="icon theme__moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg>
+        </button>
+        <a class="btn btn--install btn--nav" href="./YT-Short-AutoScroll.apk">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download-simple"></use></svg>
+          Install the APK
+        </a>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <h1>Auto-scroll to the next Short<br />when this one ends.</h1>
-        <p class="lede">I made this because I'm lazy. I watch Shorts while brushing and I hate scrolling with toothpaste on my fingers. Free for life, no limits. Skips lives and still posts so clips keep playing. If you're like me, you'll get it. 🪥</p>
-        <div class="hero-actions">
-          <div class="cta-stack">
-            <a class="solid large" href="./YT-Short-AutoScroll.apk">Download APK</a>
-            <p class="apk-ver">v.1.22</p>
+  <main id="main">
+    <!-- COPY: hero. Two lines, one .mark word and one .circled word. -->
+    <section class="hero" id="top">
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot" aria-hidden="true"></span> Android 11 and later. No account. No root.</p>
+          <h1>One Short ends.<br>The <span class="mark">next</span> one <span class="circled">starts</span>.</h1>
+          <p class="hero__sub">A small Android helper that swipes to the next YouTube Short when this one ends or loops. Two floating buttons, no settings maze.</p>
+          <div class="hero__cta">
+            <a class="btn btn--install" href="./YT-Short-AutoScroll.apk">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download-simple"></use></svg>
+              Install the APK
+            </a>
+            <a class="arrow-link" href="#feature-a">See it work <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down"></use></svg></a>
           </div>
-          <a class="ghost large" href="https://github.com/sponsors/mumayankteam">Buy us a coffee</a>
+        </div>
+
+        <div class="hero__visual" aria-label="YT Short AutoScroll screens">
+          <div class="hero__phone hero__phone--back">
+            <div class="phone">
+              <div class="phone__screen">
+                <img src="assets/img/hero-back.webp" width="723" height="1555" alt="The same Shorts screen with auto-scroll paused, shown by a play glyph in the floating button." fetchpriority="low">
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__phone hero__phone--front">
+            <div class="phone">
+              <div class="phone__screen">
+                <img src="assets/img/hero-front.webp" width="723" height="1555" alt="A YouTube Short playing with the app's floating pause and up buttons on the left edge." fetchpriority="high">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <figure class="phone" aria-label="Outline of a Shorts screen with overlay buttons">
-        <div class="phone-bezel">
-          <div class="status">
-            <span>9:41</span>
-            <span class="dots"></span>
-          </div>
-          <div class="stage">
-            <button class="fab pause" type="button" aria-label="Auto-scroll on">
-              <span class="bars"></span>
-            </button>
-            <button class="fab skip" type="button" aria-label="Skip">
-              <span class="arrow"></span>
-            </button>
-            <p class="tag tag-pause">auto on</p>
-            <p class="tag tag-skip">1-tap up</p>
-            <div class="progress"><i></i></div>
-          </div>
-          <div class="tabs">
-            <span></span>
-            <span class="on"></span>
-            <span class="plus"></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </figure>
     </section>
 
-    <div class="lower">
-      <section class="pair" aria-label="Button states">
-        <article>
-          <div class="mini-stage">
-            <button class="fab pause" type="button"><span class="bars"></span></button>
-          </div>
-          <h2>Pause</h2>
-          <p>Auto-scroll on. Next Short when progress ends or wraps.</p>
-        </article>
-        <article>
-          <div class="mini-stage">
-            <button class="fab pause" type="button"><span class="tri"></span></button>
-          </div>
-          <h2>Play</h2>
-          <p>Paused. Shorts behave as stock.</p>
-        </article>
-        <article>
-          <div class="mini-stage">
-            <button class="fab skip" type="button"><span class="arrow"></span></button>
-          </div>
-          <h2>Up</h2>
-          <p>Tap once to scroll up to the next Short.</p>
-        </article>
-      </section>
-
-      <ol class="steps">
-        <li>
-          <strong>01</strong>
-          <span>Install the APK</span>
-        </li>
-        <li>
-          <strong>02</strong>
-          <span>Turn on Accessibility → <em>YT Short AutoScroll</em></span>
-        </li>
-        <li>
-          <strong>03</strong>
-          <span>Open Shorts fullscreen. Pause auto-scrolls; the up circle skips in one tap.</span>
-        </li>
-      </ol>
+    <!-- COPY: marquee. Six to eight claims, uppercase, separated by an asterisk. -->
+    <div class="marquee-wrap">
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>SCROLLS WHEN THE SHORT ENDS <b>*</b> SKIPS LIVES AND STILL POSTS <b>*</b> PAUSE FROM THE SCREEN <b>*</b> ONE TAP UP <b>*</b> NO ROOT <b>*</b> NO ACCOUNT <b>*</b> FREE FOR LIFE <b>*</b> NOT AFFILIATED WITH YOUTUBE <b>*</b> </span>
+          <span>SCROLLS WHEN THE SHORT ENDS <b>*</b> SKIPS LIVES AND STILL POSTS <b>*</b> PAUSE FROM THE SCREEN <b>*</b> ONE TAP UP <b>*</b> NO ROOT <b>*</b> NO ACCOUNT <b>*</b> FREE FOR LIFE <b>*</b> NOT AFFILIATED WITH YOUTUBE <b>*</b> </span>
+        </div>
+      </div>
     </div>
+
+    <!-- COPY: feature split A. One idea, one card, one stat trio. -->
+    <section class="section section--feature-a" id="feature-a">
+      <div class="wrap">
+        <div class="feature-a">
+          <div class="feature-a__copy reveal">
+            <span class="ghost-num" aria-hidden="true">01</span>
+            <h2>It ends.<br>It moves on.</h2>
+            <p class="lead">The app reads the progress line, not the video. When a Short finishes or loops, it swipes once.</p>
+            <p class="body">Lives and still posts get skipped, so clips keep playing while your hand stays out of it.</p>
+
+            <dl class="stats">
+              <div><dt>Buttons</dt><dd>2</dd></div>
+              <div><dt>Service</dt><dd>1</dd></div>
+              <div><dt>Account</dt><dd>None</dd></div>
+            </dl>
+
+            <p class="note note--inline">the thin line at the bottom of the screen. that is the whole trick.</p>
+          </div>
+
+          <div class="feature-a__art reveal">
+            <span class="big-time" aria-hidden="true">Auto</span>
+            <figure class="stat-card">
+              <img src="assets/img/feature-a-card.webp" width="1148" height="744" alt="Close crop of a Short playing with the floating pause and up buttons on the left." loading="lazy">
+              <figcaption class="sr-only">The pause and up buttons over a playing Short.</figcaption>
+            </figure>
+            <div class="hand hand--card">
+              <svg class="doodle" viewBox="0 0 110 70" aria-hidden="true">
+                <path d="M6 58c20-10 38-26 48-45" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M46 9c3 1 6 2 9 5M52 19c1-3 2-6 3-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span>two buttons, that is it</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: feature split B. Two phones, two tags, one legend. -->
+    <section class="section section--feature-b" id="feature-b">
+      <div class="wrap">
+        <div class="feature-b">
+          <div class="feature-b__art reveal">
+            <div class="feature-b__phone feature-b__phone--board">
+              <div class="phone">
+                <div class="phone__screen">
+                  <img src="assets/img/feature-b-one.webp" width="760" height="1104" alt="A Short playing with the pause button showing two bars, which means auto-scroll is on." loading="lazy">
+                </div>
+              </div>
+              <span class="tag tag--one">Auto on</span>
+            </div>
+            <div class="feature-b__phone feature-b__phone--drop">
+              <div class="phone">
+                <div class="phone__screen">
+                  <img src="assets/img/feature-b-two.webp" width="760" height="1104" alt="The same Short with the pause button showing a play glyph, which means auto-scroll is off." loading="lazy">
+                </div>
+              </div>
+              <span class="tag tag--two">Paused</span>
+            </div>
+          </div>
+
+          <div class="feature-b__copy reveal">
+            <span class="ghost-num" aria-hidden="true">02</span>
+            <h2>Auto on.<br>Auto off.</h2>
+            <p class="lead">Tap the pause button and YouTube behaves like YouTube again. Tap it again and the swiping resumes.</p>
+            <p class="body">The buttons hide when a Short is not fullscreen, so they stay out of the feed.</p>
+
+            <ul class="legend">
+              <li><span class="legend__dot legend__dot--one" aria-hidden="true"></span><strong>Auto on</strong><span>The pause glyph. The next Short comes by itself.</span></li>
+              <li><span class="legend__dot legend__dot--two" aria-hidden="true"></span><strong>Paused</strong><span>A play glyph. Your thumb is in charge again.</span></li>
+            </ul>
+
+            <button class="arrow-link arrow-link--button" type="button" id="open-detail">
+              See the paused screen <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"></use></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: dark panel. The one deep surface. Keep the prop interactive. -->
+    <section class="section section--bubble" id="bubble">
+      <div class="wrap">
+        <div class="bubble-panel reveal">
+          <div class="bubble-panel__copy">
+            <span class="pill pill--accent">the part that floats</span>
+            <h2>Two buttons.<br>Not a menu.</h2>
+            <p class="lead lead--light">A pause circle and an up arrow, both half see-through, on top of the Short. No panel, no settings sheet, no second app.</p>
+
+            <ul class="ticks ticks--light">
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-pause"></use></svg> Pause or resume auto-scroll</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up"></use></svg> Tap up once to skip</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-x"></use></svg> Hidden outside a fullscreen Short</li>
+            </ul>
+
+            <p class="bubble-panel__foot">It does not know which Short you are watching. It knows where the line is.</p>
+          </div>
+
+          <div class="bubble-stage" id="bubble-stage">
+            <div class="bubble-stage__phone">
+              <div class="phone phone--tilt">
+                <div class="phone__screen">
+                  <img src="assets/img/dark-stage.webp" width="820" height="1105" alt="A paused Short with the floating play and up buttons over the video." loading="lazy">
+                </div>
+              </div>
+            </div>
+            <p class="bubble-stage__caption">sitting on top of a Short</p>
+
+            <button class="prop-bubble" id="prop-bubble" type="button">
+              <span class="prop-bubble__mark"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-pause"></use></svg></span>
+              <span class="prop-bubble__text"><b>Auto</b><em>scroll on</em></span>
+              <span class="sr-only">Drag it around, or use the hide button to drop it.</span>
+            </button>
+            <span class="bubble-hint" id="bubble-hint" aria-hidden="true">drag me</span>
+
+            <button class="bubble-hide" id="bubble-hide" type="button" aria-label="Drop to hide the floating pill">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-x"></use></svg>
+              <span>drop to hide</span>
+            </button>
+
+            <button class="bubble-restore" id="bubble-restore" type="button" hidden>Bring it back</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: proof cards. Two real surfaces, not mockups. -->
+    <section class="section section--notifs" id="proof">
+      <div class="wrap">
+        <div class="notifs">
+          <div class="notifs__copy reveal">
+            <span class="ghost-num" aria-hidden="true">03</span>
+            <h2>One switch.<br>Then silence.</h2>
+            <p class="lead">Accessibility is how an app sees another app's screen. You turn it on once, in Android settings.</p>
+            <p class="body">No account, no analytics, and no server that knows what you watched.</p>
+
+            <ul class="ticks">
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-shield-check"></use></svg> Accessibility on, in green</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-eye-slash"></use></svg> No sign-in anywhere</li>
+              <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-device-mobile"></use></svg> Hides when you leave Shorts</li>
+            </ul>
+          </div>
+
+          <div class="notifs__art reveal">
+            <figure class="notif notif--big">
+              <img src="assets/img/proof-large.webp" width="1060" height="865" alt="The app's screen with its icon, version v.1.22, a refresh button and Accessibility on in green." loading="lazy">
+              <figcaption><span class="notif__dot" aria-hidden="true"></span> The whole app <span class="notif__muted">one version, one status line</span></figcaption>
+            </figure>
+
+            <figure class="notif notif--small">
+              <img src="assets/img/proof-small.webp" width="1085" height="147" alt="Android accessibility settings showing YT Short AutoScroll switched on." loading="lazy">
+              <figcaption><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-check-circle"></use></svg> The one switch <span class="notif__muted">on, and left alone</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: three-up strip. Three square crops that show range, not repetition. -->
+    <section class="section section--maps">
+      <div class="wrap">
+        <div class="maps__head reveal">
+          <h2>Auto, paused,<br>and the app.</h2>
+          <p class="lead">The same Short, the same buttons, one tap apart.</p>
+        </div>
+
+        <div class="maps__strip reveal" tabindex="0" role="group" aria-label="Three app views">
+          <figure class="map-card map-card--one">
+            <div class="map-card__img">
+              <img src="assets/img/strip-one.webp" width="760" height="760" alt="The floating pause and up buttons over a playing Short." loading="lazy">
+            </div>
+            <figcaption><span>01</span> Auto on <em>the next one comes to you</em></figcaption>
+          </figure>
+
+          <figure class="map-card map-card--two">
+            <div class="map-card__img">
+              <img src="assets/img/strip-two.webp" width="760" height="760" alt="The floating pause button showing a play glyph while auto-scroll is paused." loading="lazy">
+            </div>
+            <figcaption><span>02</span> Paused <em>your thumb is back in charge</em></figcaption>
+          </figure>
+
+          <figure class="map-card map-card--three">
+            <div class="map-card__img">
+              <img src="assets/img/strip-three.webp" width="760" height="760" alt="The app's home screen showing a refresh button and Accessibility on." loading="lazy">
+            </div>
+            <figcaption><span>03</span> Accessibility on <em>the one switch it needs</em></figcaption>
+          </figure>
+        </div>
+
+        <p class="maps__foot reveal">Captured on a phone, from the app, with the buttons where they sit.</p>
+      </div>
+    </section>
+
+    <!-- COPY: setup. Three steps, one phone, one honest privacy card. -->
+    <section class="section section--setup">
+      <div class="wrap">
+        <div class="setup">
+          <div class="setup__copy reveal">
+            <span class="ghost-num" aria-hidden="true">04</span>
+            <h2>Two minutes.<br>Then forget it.</h2>
+            <p class="lead">Install the APK, turn on one accessibility service, open a Short. That is the whole setup.</p>
+
+            <ol class="steps">
+              <li><span>01</span><div><strong>Install the APK</strong><p>Allow the install when Android asks about this source.</p></div></li>
+              <li><span>02</span><div><strong>Turn on the service</strong><p>Settings, Accessibility, YT Short AutoScroll, On.</p></div></li>
+              <li><span>03</span><div><strong>Open a Short</strong><p>The buttons appear when the clip fills the screen.</p></div></li>
+            </ol>
+
+            <a class="link-chip" href="privacy.md">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-shield-check"></use></svg>
+              <span>Read what the service sees</span>
+            </a>
+
+            <p class="note note--inline">the permission sounds worse than it is. the link above says exactly what it reads.</p>
+          </div>
+
+          <div class="setup__art reveal">
+            <div class="phone phone--setup">
+              <div class="phone__screen">
+                <img src="assets/img/setup-screen.webp" width="900" height="1883" alt="The app's full home screen with its icon, version v.1.22, Accessibility on and an Open settings button." loading="lazy">
+              </div>
+            </div>
+            <div class="setup__privacy">
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lock-simple"></use></svg>
+              <div class="setup__privacy-copy">
+                <strong>Stays on your phone.</strong>
+                <ul class="setup__privacy-list">
+                  <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-list-numbers"></use></svg><span>Reads the progress line, not the video.</span></li>
+                  <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-eye-slash"></use></svg><span>No account, no analytics, no ads.</span></li>
+                  <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"></use></svg><span>Only fetches version.json, plus the APK if you ask.</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: bento. Six cards, at most two illustrations. -->
+    <section class="section section--bento">
+      <div class="wrap">
+        <div class="bento__head reveal">
+          <h2>Small app.<br>Long list of not-annoying.</h2>
+          <p class="lead">Everything you need. Nothing that asks for your email.</p>
+        </div>
+
+        <div class="bento">
+          <article class="bento__card bento__card--coffee reveal">
+            <span class="bento__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-pause"></use></svg></span>
+            <div class="bento__copy">
+              <h3>Built for the sink</h3>
+              <p>One less wet thumb in the world.</p>
+            </div>
+          </article>
+
+          <article class="bento__card bento__card--background reveal">
+            <div class="bento__copy">
+              <h3>The feed keeps moving</h3>
+              <p>Lives and still posts are skipped on purpose.</p>
+            </div>
+            <div class="bento__art bento__art--map">
+              <img src="assets/ill/freelancer.svg" width="1000" height="880" alt="" loading="lazy">
+            </div>
+          </article>
+
+          <article class="bento__card bento__card--bubble reveal">
+            <span class="bento__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up"></use></svg></span>
+            <div class="bento__copy">
+              <h3>Two controls</h3>
+              <p>Pause and up. No menu behind them.</p>
+            </div>
+          </article>
+
+          <article class="bento__card bento__card--silent reveal">
+            <span class="bento__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-eye-slash"></use></svg></span>
+            <div class="bento__copy">
+              <h3>Gone when you leave</h3>
+              <p>Not fullscreen, not on screen.</p>
+            </div>
+          </article>
+
+          <article class="bento__card bento__card--privacy reveal">
+            <span class="bento__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-device-mobile"></use></svg></span>
+            <div class="bento__copy">
+              <h3>No root</h3>
+              <p>An accessibility service does the work.</p>
+            </div>
+          </article>
+
+          <article class="bento__card bento__card--cadence reveal">
+            <div class="bento__copy">
+              <h3>Free for life</h3>
+              <p>No ads, no account, no upsell. Nothing to renew.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPY: closing CTA. Keep the install steps honest, including the Play Protect note. -->
+    <section class="section section--cta" id="install">
+      <div class="wrap">
+        <div class="cta">
+          <div class="cta__copy reveal">
+            <h2>Install it.<br>Your thumb rests.</h2>
+            <p class="lead">Android 11 and later. One direct APK. No store, no account, no newsletter popup.</p>
+            <div class="cta__actions">
+              <a class="btn btn--navy" href="./YT-Short-AutoScroll.apk">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download-simple"></use></svg>
+                Install the APK
+              </a>
+              <span class="cta__aside">Two buttons. That is the product.</span>
+            </div>
+            <ol class="install-steps">
+              <li><span>01</span><div><strong>Download the APK</strong> from this page.</div></li>
+              <li><span>02</span><div><strong>Allow the install</strong> when Android asks about this source.</div></li>
+              <li><span>03</span><div><strong>Turn on the service</strong> in Accessibility, then open a Short.</div></li>
+            </ol>
+            <p class="install-note">Android may scan the APK because it has not seen the app before. If Play Protect blocks the install, allow it for YT Short AutoScroll in the Play Store settings and tap Update again inside the app.</p>
+          </div>
+
+          <div class="cta__art reveal">
+            <div class="ticket" aria-label="YT Short AutoScroll install pass, Android 11 and later, version 1.22">
+              <div class="ticket__main">
+                <p class="ticket__kicker">Install pass</p>
+                <p class="ticket__brand">YT Short AutoScroll</p>
+                <p class="ticket__route">Android <span aria-hidden="true">/</span> v.1.22</p>
+                <div class="ticket__row"><span>Seq</span><strong>001</strong></div>
+                <div class="ticket__row"><span>Ready</span><strong>Now</strong></div>
+                <p class="ticket__link">YT-Short-AutoScroll.apk</p>
+              </div>
+              <div class="ticket__stub">
+                <div class="barcode" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <span class="ticket__stamp">Install</span>
+                <span class="ticket__small">Keep this page.<br>Or don't.</span>
+              </div>
+            </div>
+
+            <div class="cta__person">
+              <img src="assets/ill/freelancer.svg" width="1000" height="880" alt="" loading="lazy">
+            </div>
+            <div class="note note--cta">tap install.<br>then relax.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-dialog-title">
+      <div class="detail-dialog__panel">
+        <div class="detail-dialog__head">
+          <div><h2 id="detail-dialog-title">The paused screen</h2><p class="detail-dialog__sub">The play glyph means auto-scroll is off. Tap it to resume.</p></div>
+          <button class="detail-dialog__close" type="button" data-close aria-label="Close the detail">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-x"></use></svg>
+          </button>
+        </div>
+        <div class="detail-dialog__body">
+          <img src="assets/img/detail-screen.webp" width="760" height="988" alt="A close view of the paused Short with the play glyph in the floating button.">
+        </div>
+      </div>
+    </dialog>
   </main>
 
-  <footer>
-    <p>
-      <span>Not affiliated with any brand or apps.</span>
-      <a href="https://github.com/mumayank/yt-short-autoscroll-releases/blob/main/privacy.md">Privacy</a>
-    </p>
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <div class="footer__start">
+        <a class="brand brand--footer" href="#top" aria-label="YT Short AutoScroll, back to top">
+          <span class="brand__mark"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"></use></svg></span>
+          <span class="brand__name">YT Short AutoScroll</span>
+        </a>
+        <p>Made for the brush-your-teeth scroll.</p>
+      </div>
+      <p class="footer__credit">by mumayank</p>
+      <p class="footer__small">Android 11 and later. Not affiliated with YouTube. <a href="privacy.md">Privacy</a></p>
+    </div>
   </footer>
+
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>
