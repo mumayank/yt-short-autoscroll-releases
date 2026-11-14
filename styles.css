@@ -619,8 +619,8 @@ h3 {
   position: relative;
   padding: 8px;
   border-radius: var(--r-phone);
-  background: linear-gradient(155deg, #22384C 0%, #0A1724 45%, #06101A 100%);
-  box-shadow: 0 34px 80px -30px rgba(7, 20, 32, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  background: linear-gradient(155deg, #4A2A33 0%, #2A1418 45%, #170C0F 100%);
+  box-shadow: 0 34px 80px -30px rgba(26, 17, 20, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .phone__screen {
@@ -1813,8 +1813,8 @@ a.link-chip:hover {
   align-items: center;
   justify-content: flex-start;
   gap: clamp(20px, 4vw, 56px);
-  background: var(--accent-soft);
-  color: var(--on-accent);
+  background: var(--paper-2);
+  color: var(--ink);
 }
 
 .bento__card--cadence .bento__copy {
@@ -1822,7 +1822,7 @@ a.link-chip:hover {
 }
 
 .bento__card--cadence p {
-  color: var(--on-accent);
+  color: var(--slate);
 }
 
 .cadence {
